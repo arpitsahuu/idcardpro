@@ -26,7 +26,8 @@ app.use(cookieParser());
 const allowedOrigins = [
 	'http://localhost:3000',
   'https://id-card-bvxf-8tw7c7o4g-arpits-projects-1c6b9bf9.vercel.app',
-  'https://id-card-bvxf.vercel.app'
+  'https://id-card-bvxf.vercel.app',
+  'http://www.eagleart.in'
 ];
 
 app.use(cors({
