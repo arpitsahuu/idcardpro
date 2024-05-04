@@ -43,7 +43,9 @@ const { ExcelUpload,
     ExcelDataStaff,
     StaffNewAvatarsDownload,
     currUser,
-    deleteStaffcurr} = require("../controllers/userControllers");
+    deleteStaffcurr,
+    getStudent,
+    getStaff} = require("../controllers/userControllers");
 const isAuthenticated = require("../middlewares/auth");
 const router = express.Router();
 
@@ -95,6 +97,10 @@ router.post("/staffs/:id", isAuthenticated ,getAllStaffInSchool);
 router.post("/registration/student/:id", upload, isAuthenticated ,addStudent);
 
 router.post("/registration/staff/:id", upload, isAuthenticated ,addStaff);
+
+router.get("/student/:id", upload, isAuthenticated ,getStudent);
+
+router.get("/staff/:id", upload, isAuthenticated ,getStaff);
 
 router.post("/edit/student/:id", upload, isAuthenticated ,editStudent);
 

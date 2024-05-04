@@ -251,6 +251,37 @@ export const addSchool = (userData) => async (dispatch) => {
   }
 };
 
+export const editStudent = (studntData,id) => async (dispatch) => {
+  try {
+    dispatch(setLoading(true));
+    const response = await axios.post(`/user/edit/student/${id}`, {
+      ...studntData, 
+    },config());
+    dispatch(setLoading(false));
+    return response.data.message;
+  } catch (error) {
+    dispatch(setLoading(false));
+    dispatch(
+      setError(error?.response?.data?.message || "registerStudent failed")
+    );
+  }
+};
+
+export const editStaff = (staffData,id) => async (dispatch) => {
+  try {
+    dispatch(setLoading(true));
+    const response = await axios.post(`/user/edit/staff/${id}`, {
+      ...staffData, 
+    },config());
+    dispatch(setLoading(false));
+    return response.data.message;
+  } catch (error) {
+    dispatch(setLoading(false));
+    dispatch(
+      setError(error?.response?.data?.message || "registerStudent failed")
+    );
+  }
+};
 export const updateStudent = (userData) => async (dispatch) => {
   try {
     dispatch(setLoading(true));

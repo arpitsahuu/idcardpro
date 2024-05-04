@@ -70,7 +70,7 @@ export default function Home() {
           Welcome to our school ID card printing website. Easily create customized ID cards for students, faculty, and staff. Enhance security and foster belonging with our hassle-free solution. Join us in empowering education, one ID at a time.
           </p>
           <div className="flex justify-center">
-            <Link href={"/SchoolSigin"} className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+            <Link href={"/SchoolSignin"} className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
               School Sign in
             </Link>
             <Link href={"/Signin"} className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">

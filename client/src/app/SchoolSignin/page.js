@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-const SchoolSingin = () => {
+const SchoolSignin = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
 
@@ -123,4 +123,4 @@ const SchoolSingin = () => {
   );
 };
 
-export default SchoolSingin;
+export default SchoolSignin;

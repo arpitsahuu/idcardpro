@@ -24,6 +24,7 @@ const Viewdata = () => {
   const [loginSchool, setloginSchool] = useState(false);
   const [classValue, setClassValue] = useState("");
   const [sectionValue, setSectionValue] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     if (!user) {
@@ -388,6 +389,14 @@ const Viewdata = () => {
     }
   };
 
+  const redirectToStudentEdit = (id) => {
+    router.push(`/Viewdata/edit/${id}`);
+  };
+
+  const redirectToStaffEdit = (id) => {
+    router.push(`/Viewdata/staffedit/${id}`);
+  };
+
   return (
     <div>
       <Nav />
@@ -596,7 +605,16 @@ const Viewdata = () => {
                       Route No.: {student?.routeNo}
                     </p>
                   )}
-                  {/* Add more student details as required */}
+                   <div className="w-full flex justify-center items-center mt-2">
+                    {status == "Panding" && (
+                      <button
+                        onClick={() => redirectToStudentEdit(student._id)}
+                        className="px-5 py-1 bg-indigo-600 text-white m-auto rounded-md"
+                      >
+                        edit
+                      </button>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -717,6 +735,16 @@ const Viewdata = () => {
                   )}
 
                   {/* Add more staff details as required */}
+                  <div className="w-full flex justify-center items-center mt-2">
+                    {status == "Panding" && (
+                      <button
+                        onClick={() => redirectToStaffEdit(staff._id)}
+                        className="px-5 py-1 bg-indigo-600 text-white m-auto rounded-md"
+                      >
+                        edit
+                      </button>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>

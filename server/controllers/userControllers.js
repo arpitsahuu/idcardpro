@@ -29,7 +29,7 @@ const bcrypt = require('bcrypt');
 const cloudinary = require("cloudinary");
 
 cloudinary.v2.config({
-  cloud_name: "dcj2gzytt",
+  cloud_name: "dubvmkr0l",
   api_key: process.env.CLOUDINARY_PUBLIC_KEY,
   api_secret: process.env.CLOUDINARY_SECRET_KEY,
 });
@@ -879,14 +879,16 @@ exports.editStudent = catchAsyncErron(async (req, res, next) => {
   const studentId = req.params.id;
   console.log(studentId);
   const updates = req.body; // The updates from the request body.
+  console.log(updates)
 
   const updatedStudent = await Student.findByIdAndUpdate(studentId, updates, {
     new: true,
   });
+
   if(req.body.name){
     let nameStudent = await Student.findById(req.id);
-    nameStudent.name = req.body.name;
-    await nameStudent.save();
+    updatedStudent.name = req.body.name;
+    await updatedStudent.save();
   }
 
   let file = null ;
@@ -1161,7 +1163,11 @@ exports.editStaff = catchAsyncErron(async (req, res, next) => {
     new: true,
   });
 
-  const file = req.files[0] || null;
+  let file = null ;
+  
+  if(req.files && req.files[0]){
+    file = req.files[0]  ;
+  }
 
   if (file) {
     const currStudent = await Staff.findById(staffId);
@@ -1189,7 +1195,7 @@ exports.editStaff = catchAsyncErron(async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: "Student updated successfully",
+      message: "Staff updated successfully",
       student: currStudent,
     });
   }
@@ -1197,7 +1203,7 @@ exports.editStaff = catchAsyncErron(async (req, res, next) => {
   // Respond with the updated student information.
   res.status(200).json({
     success: true,
-    message: "Student updated successfully",
+    message: "Staff updated successfully",
     student: updatedStudent,
   });
 });
@@ -2822,4 +2828,35 @@ exports.SerchStudent = catchAsyncErron(async (req, res, next) => {
     console.error('Error searching for students:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
+});
+
+exports.getStudent = catchAsyncErron(async (req, res, next) => {
+  const studentId = req.params.id;
+  console.log(studentId);
+
+  const student = await Student.findById(studentId);
+  console.log(student)
+
+
+  // Respond with the updated student information.
+  res.status(200).json({
+    success: true,
+    message: "Student",
+    student: student,
+  });
+});
+
+exports.getStaff = catchAsyncErron(async (req, res, next) => {
+  const staffId = req.params.id;
+  console.log(staffId);
+
+  const staff= await Staff.findById(staffId);
+
+
+  // Respond with the updated student information.
+  res.status(200).json({
+    success: true,
+    message: "Staff",
+    staff: staff,
+  });
 });
