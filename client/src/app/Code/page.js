@@ -20,7 +20,7 @@ function Code() {
 
     useEffect(() => {
         if (user) {
-          redirect('/login')
+          redirect('/')
         }
     }, [user]);
 

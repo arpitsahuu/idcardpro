@@ -52,7 +52,7 @@ const Signup = () => {
       };
       const response = await dispatch(registerUser(User));
       if(response == "successfully send mail pleas check your Mail"){
-        router.push("/code")
+        router.push("/Code")
       }
     } else{
 
