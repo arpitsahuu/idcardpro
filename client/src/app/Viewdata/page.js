@@ -613,7 +613,6 @@ const Viewdata = () => {
                         edit
                       </button>
                     )}
-                    <button onClick={() => downloadImage(student?.avatar?.url)}>download</button>
                   </div>
                 </div>
               ))}
