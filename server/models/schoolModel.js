@@ -43,7 +43,7 @@ const schoolModel = mongoose.Schema(
 			},
 		},
 		code:{
-			type:Number,
+			type:String,
 		},
 		isActive: {
 			type: Boolean,
