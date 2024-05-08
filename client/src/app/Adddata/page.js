@@ -46,16 +46,24 @@ const Adddata = () => {
   const [beltNo, setbeltNo] = useState("");
   const [staffID, setstaffID] = useState("");
   const dispatch = useDispatch();
-  const [loginSchool,setloginSchool] = useState(false);
+  const [loginSchool, setloginSchool] = useState(false);
+
+  let selectedPhotos = []
+  const handlePhotoFileSelect = (e) => {
+    e.preventDefault();
+    const files = e.target.files;
+    selectedPhotos = [...selectedPhotos, ...files];
+    console.log(selectedPhotos)
+  };
 
   useEffect(() => {
     if (!user) {
-      redirect("/") 
+      redirect("/");
     }
-    if(user?.role == "school"){
-      console.log(user.school)
+    if (user?.role == "school") {
+      console.log(user.school);
       setCurrSchool(user.school);
-      setloginSchool(true)
+      setloginSchool(true);
     }
   }, [user]);
 
@@ -147,6 +155,8 @@ const Adddata = () => {
       });
     }
   };
+
+  
 
   const handleStaffFormSubmit = async (e) => {
     e.preventDefault();
@@ -258,6 +268,7 @@ const Adddata = () => {
   //   setDoj('');
   //   setUid('');
   // };
+  
 
   return (
     <>
@@ -302,7 +313,7 @@ const Adddata = () => {
               Please add a School
             </h4>
           )}
-          <form className="mt-3 w-full max-w-md" >
+          <form className="mt-3 w-full max-w-md">
             <div className="mb-4">
               <label
                 htmlFor="Role"
@@ -509,6 +520,33 @@ const Adddata = () => {
                     />
                   </div>
                 )}
+                <label
+                  htmlFor="dropzone-file"
+                  className="flex items-center px-3 py-3 mx-auto mt-6 text-center border-2 border-dashed rounded-lg cursor-pointer"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 text-gray-300"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                    />
+                  </svg>
+                  <h2 className="mx-3 text-gray-400">Student Profile Photos</h2>
+                  <input
+                    id="dropzone-file"
+                    type="file"
+                    className="hidden"
+                    multiple
+                    onChange={handlePhotoFileSelect}
+                  />
+                </label>
 
                 {/* Repeat above pattern for other fields */}
                 {/* Add input fields for other student schema fields */}

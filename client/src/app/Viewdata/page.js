@@ -369,14 +369,14 @@ const Viewdata = () => {
 
   const downloadImage = async (imageUrl) => {
     try {
-      const response = await axios.get(imageUrl, {
-        responseType: "blob",
-      });
+      // const response = await axios.get(imageUrl, {
+      //   responseType: "blob",
+      // });
 
-      const blob = new Blob([response?.data], {
-        type: response.headers["content-type"],
-      });
-      const url = window.URL.createObjectURL(blob) || null;
+      // const blob = new Blob([response?.data], {
+      //   type: response.headers["content-type"],
+      // });
+      const url = window.URL.createObjectURL(new Blob([imageUrl])) || null;
       const a = document.createElement("a");
       a.href = url;
       a.download = imageUrl.split("/").pop();
@@ -385,7 +385,6 @@ const Viewdata = () => {
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error(error);
-      // Handle error
     }
   };
 
@@ -614,6 +613,7 @@ const Viewdata = () => {
                         edit
                       </button>
                     )}
+                    <button onClick={() => downloadImage(student?.avatar?.url)}>download</button>
                   </div>
                 </div>
               ))}
